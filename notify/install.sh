@@ -13,14 +13,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-if [[ $# != 1 ]] ; then
-  echo "Usage:"
-  echo "  $0 https://hooks.slack.com/services/YOUR/SLACK/INCOMING-WEBHOOK"
+if [ ! -f ./slack-hook ] ; then
+  echo "The file ./slack-hook must exist and contain the URL to your incoming"
+  echo "Slack webook.  Example:"
+  echo
+  echo "$ cat ./slack-hook"
+  echo "https://hooks.slack.com/services/YOUR/SLACK/INCOMING-WEBHOOK"
   exit 1
 fi
 
 echo "Copying scripts."
-echo $1 > slack-hook
 mkdir -p /etc/slack
 cp login-notify.sh slack-hook /etc/slack
 
