@@ -1,23 +1,27 @@
-# Hosting a Botkit Slack Bot with Kubernetes
+# Hosting a Botkit Slack Bot on Google Container Engine
 
 This example will walk you through running a
-[Botkit](https://github.com/howdyai/botkit) Slack Bot on Kubernetes.
+[Botkit](https://github.com/howdyai/botkit) Slack Bot on
+[Google Container Engine](https://cloud.google.com/container-engine/).
+
+We will be using [Google Container
+Registry](https://cloud.google.com/container-registry/) to store a Docker image
+for the bot and [Google Container
+Engine](https://cloud.google.com/container-engine/), a hosted version of
+[Kubernetes](http://kubernetes.io), to run them.
 
 
 ## Setting up your environment
 
-Set up the [prerequisites](http://kubernetes.io/gettingstarted/). We will be
-using [Google Container Registry](https://cloud.google.com/container-registry/)
-to store our Docker image and
-[Google Container Engine](https://cloud.google.com/container-engine/), a hosted
-version of Kubernetes, to run them.
+First, set up the
+[prerequisites](https://cloud.google.com/container-engine/docs/before-you-begin).
 
 To start,
 [create a Kubernetes cluster](https://cloud.google.com/container-engine/docs/clusters/operations#creating_a_container_cluster),
 if you don't already have one. To do this on Google Container Engine, run:
 
 ```bash
-gcloud container clusters create slackbot
+gcloud container clusters create my-cluster
 ```
 
 
@@ -97,7 +101,7 @@ Google Compute Engine resources it is using, even if they are idle. To delete
 the cluster, run:
 
 ```bash
-gcloud container clusters delete slackbot
+gcloud container clusters delete my-cluster
 ```
 
 This deletes the Google Compute Engine instances that are running the cluster.
