@@ -16,7 +16,7 @@ This repository holds samples for how to run different kinds of [Slack][slack]
 
 ### Incoming Webhooks
 
-- [Send a Notification to Slack for SSH Logins on Google Container Engine](notify)
+- [Send a Notification to Slack for SSH Logins on Google Compute Engine](notify)
 
 
 ### Bot Users
