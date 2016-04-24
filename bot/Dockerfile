@@ -14,12 +14,12 @@
 
 FROM node:5.4
 
-# Install app dependencies
+# Install app dependencies.
 COPY package.json /src/package.json
 WORKDIR /src
 RUN npm install
 
-# Bundle app source
-COPY . /src
+# Bundle app source.
+COPY demo_bot.js /src
 
 CMD ["node", "/src/demo_bot.js"]
