@@ -11,5 +11,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Google Inc.",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/GoogleCloudPlatform/slack-samples.git"
+  }
 }
