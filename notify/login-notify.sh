@@ -17,7 +17,13 @@ script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [[ $PAM_TYPE != "close_session" ]] ; then
   host=$(hostname)
+
+  # Include the username and remote IP address in the message.
   message="SSH Login: ${PAM_USER} from ${PAM_RHOST} on ${host}"
-  hook=$(cat "${script_dir}/slack-hook") 
+
+  # Read the webhook URL from the slack-hook file.
+  hook=$(cat "${script_dir}/slack-hook")
+
+  # Send a POST HTTP request to the Slack webhook.
   curl -X POST --data-urlencode "payload={\"text\": \"${message}\"}" "${hook}"
 fi
