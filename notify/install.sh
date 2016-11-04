@@ -29,4 +29,3 @@ cp login-notify.sh slack-hook /etc/slack
 echo "Configuring /etc/pam.d/sshd."
 echo "# Notify via Slack that someone has logged in." >> /etc/pam.d/sshd
 echo "session    optional     pam_exec.so seteuid /etc/slack/login-notify.sh" >> /etc/pam.d/sshd
-
