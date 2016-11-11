@@ -8,8 +8,16 @@ conversation. For example, the [Giphy
 app](https://get.slack.help/hc/en-us/articles/204714258-Add-Giphy-search-to-Slack) can be run by
 **/giphy** in a conversation.
 
+1\.  [Objectives](#objectives)  
+2\.  [Costs](#costs)  
+3\.  [Before you begin](#beforeyoubegin)  
+4\.  [Getting the sample code](#gettingthesamplecode)  
+5\.  [Before you begin](#beforeyoubegin-1)  
+6\.  [Adding a slash command custom integration](#addingaslashcommandcustomintegration)  
 
-## Objectives
+<a name="objectives"></a>
+
+## 1\. Objectives
 
 - Deploy a Java application to the [App Engine flexible environment][flexible].
 - Create a [slash command for Slack](https://api.slack.com/slash-commands).
@@ -18,8 +26,9 @@ app](https://get.slack.help/hc/en-us/articles/204714258-Add-Giphy-search-to-Slac
 
 [flexible]: https://cloud.google.com/appengine/docs/flexible/java/
 
+<a name="costs"></a>
 
-## Costs
+## 2\. Costs
 
 This tutorial uses billable components of Cloud Platform, including:
 
@@ -29,8 +38,9 @@ Use the [Pricing Calculator][pricing] to generate a cost estimate based on your 
 
 [pricing]: https://cloud.google.com/products/calculator
 
+<a name="beforeyoubegin"></a>
 
-## Before you begin
+## 3\. Before you begin
 
 1.  Follow the [quickstart for Java in the App Engine flexible
     environment](https://cloud.google.com/appengine/docs/flexible/java/quickstart) to 
@@ -48,43 +58,41 @@ Use the [Pricing Calculator][pricing] to generate a cost estimate based on your 
 1.  Create a [new Slack team](https://slack.com/), or use an team where you have
     permissions to add custom integrations.
 
+<a name="gettingthesamplecode"></a>
 
-## Getting the sample code
+## 4\. Getting the sample code
 
 Get the latest sample code from GitHub using Git or download the repository as a ZIP file.
-([Download](https://github.com/GoogleCloudPlatform/slack-samples/archive/master.zip))
+([Download](https://github.com/GoogleCloudPlatform/java-docs-samples/archive/master.zip))
 
-    git clone https://github.com/GoogleCloudPlatform/slack-samples.git
+    git clone https://github.com/GoogleCloudPlatform/java-docs-samples.git
+
 
 The `java/command/1-start` directory contains a simple Hello World application, which you will
 modify to support Slack slash commands.
 
     cd java/command/1-start
 
+<a name="beforeyoubegin-1"></a>
 
-## Deploying to App Engine
+## 5\. Before you begin
 
-To run the application locally, use the Maven Jetty plugin.
+1.  Follow the [quickstart for Java in the App Engine flexible
+    environment](https://cloud.google.com/appengine/docs/flexible/java/quickstart) to 
+    set up your environment to deploy the sample applications App Engine.
+    1.  Download and install the [Google Cloud SDK](https://cloud.google.com/sdk/docs/).
+    1.  [Install and configure Apache Maven](http://maven.apache.org/index.html).
+    1.  [Create a new Google Cloud Platform project, or use an existing
+        one](https://console.cloud.google.com/project).
+    1.  [Enable billing for your
+        project](https://support.google.com/cloud/answer/6293499#enable-billing).
+    1. Initialize the Cloud SDK.
 
-    mvn jetty:run
+           gcloud init
 
-View the app at [localhost:8080](http://localhost:8080). You should see the text "Hello, world."
+<a name="addingaslashcommandcustomintegration"></a>
 
-To deploy the app to App Engine, run
-
-    mvn appengine:deploy
-
-After the deploy finishes (can take up to 10 minutes), you can view your application at
-`https://YOUR_PROJECT.appspot.com`, where `YOUR_PROJECT` is your Google Cloud project ID. You can
-see the new version deployed on the [App Engine section of the Google Cloud
-Console](https://console.cloud.google.com/appengine/versions).
-
-For a more detailed walkthrough, see the [getting started
-guide for Java in the App Engine flexible
-environment](https://cloud.google.com/java/getting-started/hello-world).
-
-
-## Adding a slash command custom integration
+## 6\. Adding a slash command custom integration
 
 When someone types a [slash command in
 Slack](https://api.slack.com/slash-commands#how_do_commands_work), the Slack servers send an HTTP

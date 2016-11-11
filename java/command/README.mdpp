@@ -1,0 +1,63 @@
+# Running a slash command for Slack on Google Cloud Platform with Java
+
+This tutorial demonstrates how to build and deploy a [slash command for
+Slack](https://api.slack.com/slash-commands) on [Google Cloud Platform](https://cloud.google.com/).
+
+Slash commands provide a way to call external web services from a [Slack](https://slack.com/)
+conversation. For example, the [Giphy
+app](https://get.slack.help/hc/en-us/articles/204714258-Add-Giphy-search-to-Slack) can be run by
+**/giphy** in a conversation.
+
+!TOC
+
+## Objectives
+
+- Deploy a Java application to the [App Engine flexible environment][flexible].
+- Create a [slash command for Slack](https://api.slack.com/slash-commands).
+- Load tokens from the [Google Cloud Runtime Config
+  API](https://cloud.google.com/deployment-manager/runtime-configurator/) 
+
+[flexible]: https://cloud.google.com/appengine/docs/flexible/java/
+
+## Costs
+
+This tutorial uses billable components of Cloud Platform, including:
+
+- Google App Engine Flexible Environment
+
+Use the [Pricing Calculator][pricing] to generate a cost estimate based on your projected usage.
+
+[pricing]: https://cloud.google.com/products/calculator
+
+!INCLUDEURL "https://raw.githubusercontent.com/GoogleCloudPlatform/java-docs-samples/tswast-readmetemplates/.github/templates/appengine-flexible-before-you-begin.mdpp"
+
+1.  Create a [new Slack team](https://slack.com/), or use an team where you have
+    permissions to add custom integrations.
+
+!INCLUDE "../../.github/templates/getting-sample-code.mdpp"
+
+The `java/command/1-start` directory contains a simple Hello World application, which you will
+modify to support Slack slash commands.
+
+    cd java/command/1-start
+
+!INCLUDEURL "https://raw.githubusercontent.com/GoogleCloudPlatform/java-docs-samples/tswast-readmetemplates/.github/templates/appengine-flexible-before-you-begin.mdpp"
+
+## Adding a slash command custom integration
+
+When someone types a [slash command in
+Slack](https://api.slack.com/slash-commands#how_do_commands_work), the Slack servers send an HTTP
+request to your application.
+
+-   Add a slash command custom integration to your Slack team from the [custom integrations
+    management page](https://slack.com/apps/manage/custom-integrations).
+-   Use `/greet` as the command name.
+-   Set the URL on the integration settings page to the URL for your deployed application (for
+    example: `https://YOUR_PROJECT.appspot.com/send-greeting`).
+-   Click the Save button at the bottom of the page to save your settings.
+    
+When you run the slash command, Slack will send a request to your app and show the result.
+
+-   Type `/greet` in your Slack team.
+
+You should see the text `Hello, world.` in response.

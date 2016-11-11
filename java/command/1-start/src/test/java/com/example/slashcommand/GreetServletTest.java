@@ -19,13 +19,13 @@ package com.example.slashcommand;
 import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.Mockito.when;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import javax.servlet.http.HttpServletRequest;
@@ -72,3 +72,4 @@ public class GreetServletTest {
     assertThat(responseWriter.toString()).isEqualTo("Hello, Jane Doe.");
   }
 }
+
