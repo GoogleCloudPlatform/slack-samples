@@ -23,8 +23,9 @@
   <!-- Parent POM defines common plugins and properties. -->
   <parent>
     <groupId>com.google.cloud.samples</groupId>
-    <artifactId>shared-configuration</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <artifactId>slack-samples</artifactId>
+    <version>1.0.0</version>
+    <relativePath>../..</relativePath>
   </parent>
 
   <properties>
