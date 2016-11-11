@@ -63,9 +63,9 @@ Use the [Pricing Calculator][pricing] to generate a cost estimate based on your 
 ## 4\. Getting the sample code
 
 Get the latest sample code from GitHub using Git or download the repository as a ZIP file.
-([Download](https://github.com/GoogleCloudPlatform/java-docs-samples/archive/master.zip))
+([Download](https://github.com/GoogleCloudPlatform/slack-samples/archive/master.zip))
 
-    git clone https://github.com/GoogleCloudPlatform/java-docs-samples.git
+    git clone https://github.com/GoogleCloudPlatform/slack-samples.git
 
 
 The `java/command/1-start` directory contains a simple Hello World application, which you will
