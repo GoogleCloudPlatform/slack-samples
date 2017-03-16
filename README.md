@@ -28,7 +28,7 @@ for Slack on Google Cloud Platform.
   ([Codelab](https://codelabs.developers.google.com/codelabs/cloud-slack-bot/index.html#0))
   ([Qwiklabs](https://google.qwiklabs.com/focuses/3167?locale=en))
   ([Code](https://github.com/googlecodelabs/cloud-slack-bot)) (Node.js)
-- 
+- Sentiment Bot using Natural Language API ([Code](https://github.com/GoogleCloudPlatform/nodejs-docs-samples/tree/master/language/slackbot)) (Node.js)
 - API.AI agent bots ([Tutorial](https://docs.api.ai/docs/slack-integration))
 
 
