@@ -23,7 +23,7 @@ for Slack on Google Cloud Platform.
 
 ### Java
 
-- Slash Command on Google App Engine ([Code](java/command)) (Language: Java)
+- Slash Command on Google App Engine ([Code](java/command))
 
 ### Node.js
 
