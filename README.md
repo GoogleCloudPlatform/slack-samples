@@ -16,33 +16,33 @@ Platform][google-cloud] using these samples.
 These samples should help get you started with different ways of hosting apps
 for Slack on Google Cloud Platform.
 
-### Incoming Webhooks
+### Go
 
-- SSH Login Notifications on Google Compute Engine ([Code](notify)) (Language: Shell)
+- Slash Command on Google App Engine ([Part 1](command/1-custom-integration),
+  [Part 2](command/2-app))
 
+### Java
 
-### Bot Users
+- Slash Command on Google App Engine ([Code](java/command)) (Language: Java)
 
-- Botkit Hello World on Kubernetes ([Code](bot)) (Language: Node.js)
+### Node.js
+
+- Botkit Hello World on Kubernetes ([Code](bot))
 - Botkit Kittenbot on Kubernetes
   ([Codelab](https://codelabs.developers.google.com/codelabs/cloud-slack-bot/index.html#0),
   [Qwiklabs](https://google.qwiklabs.com/focuses/3167?locale=en),
-  [Code](https://github.com/googlecodelabs/cloud-slack-bot)) (Language: Node.js)
+  [Code](https://github.com/googlecodelabs/cloud-slack-bot))
 - Sentiment Bot using Natural Language API
   ([Code](https://github.com/GoogleCloudPlatform/nodejs-docs-samples/tree/master/language/slackbot))
-  (Language: Node.js)
-- API.AI agent bots ([Tutorial](https://docs.api.ai/docs/slack-integration))
-
-
-### Slash Commands
-
-- Slash Command on Google App Engine ([Part 1](command/1-custom-integration),
-  [Part 2](command/2-app)) (Language: Go)
-- Slash Command on Google App Engine ([Code](java/command)) (Language: Java)
 - Slash Command on Google Cloud Functions
   ([Tutorial](https://cloud.google.com/functions/docs/tutorials/slack),
   [Code](https://github.com/GoogleCloudPlatform/nodejs-docs-samples/tree/master/functions/slack))
-  (Language: Node.js)
+
+### Scripting / GUI
+
+- SSH Login Notifications on Google Compute Engine ([Code](notify),
+  [Tutorial](https://cloud.google.com/community/tutorials/send-connect-notification-to-slack-from-google-compute-engine))
+- API.AI agent bots ([Tutorial](https://docs.api.ai/docs/slack-integration))
 
 
 ## Contributing changes
