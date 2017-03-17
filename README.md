@@ -27,13 +27,13 @@ for Slack on Google Cloud Platform.
 
 ### Node.js
 
-- Botkit Hello World on Kubernetes ([Code](bot))
-- Botkit Kittenbot on Kubernetes
-  ([Codelab](https://codelabs.developers.google.com/codelabs/cloud-slack-bot/index.html#0),
+- Botkit Bot on Google Container Engine
+  ([Tutorial](https://cloud.google.com/community/tutorials/run-botkit-on-google-container-engine),
+  [Codelab](https://codelabs.developers.google.com/codelabs/cloud-slack-bot/index.html#0),
   [Qwiklabs](https://google.qwiklabs.com/focuses/3167?locale=en),
   [Code](https://github.com/googlecodelabs/cloud-slack-bot))
-- Sentiment Bot using Natural Language API
-  ([Code](https://github.com/GoogleCloudPlatform/nodejs-docs-samples/tree/master/language/slackbot))
+- Sentiment Analysis Botkit Bot using Natural Language API
+  ([Tutorial & Code](https://github.com/GoogleCloudPlatform/nodejs-docs-samples/tree/master/language/slackbot))
 - Slash Command on Google Cloud Functions
   ([Tutorial](https://cloud.google.com/functions/docs/tutorials/slack),
   [Code](https://github.com/GoogleCloudPlatform/nodejs-docs-samples/tree/master/functions/slack))
