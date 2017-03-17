@@ -22,12 +22,14 @@
   <body>
     <h2>Example Slash Command</h2>
     <p>This is an example of a
-      <a href="https://api.slack.com/custom-integrations">custom integration</a>
+      <a href="https://api.slack.com/slash-commands">slash command</a>
       for Slack. To set it up as a command:
       <ol>
-        <li>Point the <a href="https://my.slack.com/services/new/slash-commands">new slash command</a>
-          at the URL for <a href="/quotes/random">/quotes/random</a>.</li>
-        <li>Modify config.go with your Slack token to verify that requests are
+        <li>Create a <a href="https://api.slack.com/apps">new Slack app</a>.</li>
+        <li>Configure a slash command and point it at the URL for <a
+            href="/quotes/random">/quotes/random</a>.</li>
+        <li>Modify config.go with the verification token on the basic
+          information page of the app configuration to verify that requests are
           coming from Slack.</li>
       </ol>
   </body>

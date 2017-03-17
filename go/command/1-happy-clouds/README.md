@@ -18,13 +18,6 @@ for a list of samples in other languages.
 - Configure an internal Slack app to call an App Engine application for slash
   commands.
 
-## Before you begin
-
-1.  [Install and configure Go](https://golang.org/doc/install).
-1.  Set up [App Engine and your development
-    environment](https://cloud.google.com/appengine/docs/standard/go/quickstart).
-1.  Create a [new Slack app](https://api.slack.com/tutorials/slack-apps-hello-world).
-
 ## Costs
 
 This tutorial uses billable components of Cloud Platform including Google App
@@ -37,28 +30,59 @@ tier](https://cloud.google.com/appengine/quotas#Instances).
 Slack is free for up to 10 apps and integrations. Check the [Slack pricing
 page](https://slack.com/pricing) for details.
 
+## Before you begin
+
+1.  [Install and configure Go](https://golang.org/doc/install).
+1.  Set up [App Engine and your development
+    environment](https://cloud.google.com/appengine/docs/standard/go/quickstart).
+1.  Create a [new Slack app](https://api.slack.com/tutorials/slack-apps-hello-world).
+
+## Getting the sample code
+
+1.  Get the latest sample code.
+
+        go get -u github.com/GoogleCloudPlatform/slack-samples/go/command/1-happy-clouds
+
+1.  Change to the sample code directory.
+
+        cd $GOPATH/src/github.com/GoogleCloudPlatform/slack-samples/go/command/1-happy-clouds
+
 ## Setup Slack
 
 Configure a new [slash command](https://api.slack.com/slash-commands) for your
 Slack app.
 
 1.  Go to the Slack app that you created from [your apps page](https://api.slack.com/apps).
-1.  Click **Slash commands** under the **Features** header on the left-hand
-    side of the Slack app configuration page.
-1.  Click the **Create new command** button.
-    1.  Enter the command name, like `/happyclouds`.
+1.  Create a new slash command.
+    1.  Click **Slash commands** under the **Features** header on the left-hand
+        side of the Slack app configuration page.
+    1.  Click the **Create new command** button.
+    1.  Enter the command name, like `/happycloud`.
     1.  For the **Request URL**, enter
         `https://YOUR-PROJECT.appspot.com/quotes/random`, replace
         `YOUR-PROJECT` with your [Google Cloud Project
         ID](https://support.google.com/cloud/answer/6158840?hl=en).
     1.  For the description, enter "Displays a happy quote".
     1.  Click the **Save** button in the lower right-hand corner.
-    1.  Click the **Copy** button to copy the **token**.
-1.  Edit `config.go`. Set the token field to the value you copied.
+1.  Copy the verification token.
+    1.  Click **Basic information** under the **Settings** header on the
+        left-hand navigation.
+    1.  Copy the **Verification token** to your clipboard.
 
 [Be careful](https://api.slack.com/docs/oauth-safety) with your token. Treat it
 like you would any other secret token. Do not store tokens in version control
 or share them publicly.
+
+## Configure the Go app
+
+1.  Open `config.go` in a text editor.
+1.  Set the token field to the value you copied. Change the line
+
+        token string
+
+    to
+
+        token = "YOUR-TOKEN-VALUE"
 
 ## Build and Deploy
 
