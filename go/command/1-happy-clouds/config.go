@@ -16,9 +16,7 @@ package quotebot
 
 var (
 	// TODO: Set the token variable. It is needed to verify that the
-	// requests to the slash command come from Slack. It is provided for
-	// you by Slack when you create the Slash command as a custom
-	// integration. https://my.slack.com/services/new/slash-commands
+	// requests to the slash command come from Slack.
 	token string
 
 	// Quotes from Bob Ross. https://youtu.be/YLO7tCdBVrA

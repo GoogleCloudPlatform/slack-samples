@@ -18,8 +18,8 @@ for Slack on Google Cloud Platform.
 
 ### Go
 
-- Slash Command on Google App Engine ([Part 1](command/1-custom-integration),
-  [Part 2](command/2-app))
+- Slash Command on Google App Engine ([Part 1](go/command/1-happy-clouds),
+  [Part 2](go/command/2-oauth))
 
 ### Java
 
