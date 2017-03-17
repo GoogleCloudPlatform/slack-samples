@@ -18,12 +18,12 @@ for Slack on Google Cloud Platform.
 
 ### Go
 
-- Slash Command on Google App Engine ([Part 1](command/1-custom-integration),
-  [Part 2](command/2-app))
+- Slash Command on Google App Engine ([Part 1](go/command/1-happy-clouds),
+  [Part 2](go/command/2-oauth))
 
 ### Java
 
-- Slash Command on Google App Engine ([Code](java/command))
+- Slash Command on Google App Engine ([Tutorial & Code](java/command))
 
 ### Node.js
 
@@ -40,8 +40,9 @@ for Slack on Google Cloud Platform.
 
 ### Scripting / GUI
 
-- SSH Login Notifications on Google Compute Engine ([Code](notify),
-  [Tutorial](https://cloud.google.com/community/tutorials/send-connect-notification-to-slack-from-google-compute-engine))
+- SSH Login Notifications on Google Compute Engine
+  ([Tutorial](https://cloud.google.com/community/tutorials/send-connect-notification-to-slack-from-google-compute-engine),
+  [Code](notify))
 - API.AI agent bots ([Tutorial](https://docs.api.ai/docs/slack-integration))
 
 

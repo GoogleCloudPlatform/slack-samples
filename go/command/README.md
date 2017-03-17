@@ -2,8 +2,8 @@
 
 ## Running a Slack slash command on Google App Engine using Go
 
-- [Part 1](1-custom-integration): Creating a custom integration.
-- [Part 2](2-app): Creating a Slack app.
+- [Part 1](1-happy-clouds): Creating an internal integration.
+- [Part 2](2-oauth): Add your app to multiple Slack teams.
 
 ## Other Slack slash command samples
 

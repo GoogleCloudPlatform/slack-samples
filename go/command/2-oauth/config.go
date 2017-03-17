@@ -20,10 +20,8 @@ import (
 )
 
 var (
-	// This configuration is needed to turn this into a Slack app, but not
-	// needed for a custom integration.  Slack recommends
-	// (https://api.slack.com/slack-apps#what-it-does) developing as a
-	// custom integration before converting into an app.
+	// This configuration is needed to turn this into a distributable Slack
+	// app.
 	//
 	// You must register the app at https://api.slack.com/applications/new.
 	// Set the callback in the registration form to
@@ -41,9 +39,7 @@ var (
 	sessionSecret = "something-very-secret"
 
 	// TODO: Set the token variable. It is needed to verify that the
-	// requests to the slash command come from Slack. It is provided for
-	// you by Slack when you "Create new command" from the Slack App
-	// configuration page.
+	// requests to the slash command come from Slack.
 	token string
 
 	// Quotes from Bob Ross. https://youtu.be/YLO7tCdBVrA

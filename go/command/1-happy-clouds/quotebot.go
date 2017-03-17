@@ -58,6 +58,8 @@ func handleRandomQuote(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid Slack token.", http.StatusBadRequest)
 		return
 	}
+	c := appengine.NewContext(r)
+	log.Errorf(c, "Got token: %s", r.PostFormValue("token"))
 
 	w.Header().Set("content-type", "application/json")
 
@@ -66,7 +68,6 @@ func handleRandomQuote(w http.ResponseWriter, r *http.Request) {
 		Text:         quotes[rand.Intn(len(quotes))],
 	}
 	if err := json.NewEncoder(w).Encode(resp); err != nil {
-		c := appengine.NewContext(r)
 		log.Errorf(c, "Error encoding JSON: %s", err)
 		http.Error(w, "Error encoding JSON.", http.StatusInternalServerError)
 		return
