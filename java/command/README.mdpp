@@ -29,7 +29,7 @@ Use the [Pricing Calculator][pricing] to generate a cost estimate based on your 
 
 [pricing]: https://cloud.google.com/products/calculator
 
-!INCLUDEURL "https://raw.githubusercontent.com/GoogleCloudPlatform/java-docs-samples/tswast-readmetemplates/.github/templates/appengine-flexible-before-you-begin.mdpp"
+!INCLUDEURL "https://raw.githubusercontent.com/GoogleCloudPlatform/java-docs-samples/master/.github/templates/appengine-flexible-before-you-begin.mdpp"
 
 1.  Create a [new Slack team](https://slack.com/), or use an team where you have
     permissions to add custom integrations.
@@ -41,7 +41,15 @@ modify to support Slack slash commands.
 
     cd java/command/1-start
 
-!INCLUDEURL "https://raw.githubusercontent.com/GoogleCloudPlatform/java-docs-samples/tswast-readmetemplates/.github/templates/appengine-flexible-before-you-begin.mdpp"
+!INCLUDEURL "https://raw.githubusercontent.com/GoogleCloudPlatform/java-docs-samples/master/.github/templates/appengine-flexible-deploy.mdpp"
+
+## Create a Slack app
+
+Create a new Slack app by going to the [app management
+page](https://api.slack.com/apps) and clicking the **Create new app** button.
+
+1.  Give the app a name, such as "Hello World".
+1.  Choose the Slack team where you want it installed.
 
 ## Adding a slash command custom integration
 
@@ -49,12 +57,19 @@ When someone types a [slash command in
 Slack](https://api.slack.com/slash-commands#how_do_commands_work), the Slack servers send an HTTP
 request to your application.
 
--   Add a slash command custom integration to your Slack team from the [custom integrations
-    management page](https://slack.com/apps/manage/custom-integrations).
--   Use `/greet` as the command name.
--   Set the URL on the integration settings page to the URL for your deployed application (for
-    example: `https://YOUR_PROJECT.appspot.com/send-greeting`).
--   Click the Save button at the bottom of the page to save your settings.
+1.  Select the [Slash commands](https://api.slack.com/slash-commands) feature
+    in the **Add features and functionality** section.
+1.  Click the **Create new command** button.
+1.  Set the command name to `/greet`.
+1.  Set the request URL to `https://YOUR_PROJECT.appspot.com/send-greeting`,
+    replacing `YOUR_PROJECT` with your Google Cloud Project ID.
+1.  Set the short description to "Sends a greeting".
+1.  Click the **Save** button at the bottom of the page to save your settings.
+
+Reinstall the app to ensure the slash command is installed.
+
+1.  Select the **Install app** item in the left navigation under **Settings**.
+1.  Click the **Install app** or **Reinstall app** button.
     
 When you run the slash command, Slack will send a request to your app and show the result.
 
