@@ -11,8 +11,10 @@ on App Engine, follow the [quickstart tutorial][flexible-quickstart].
 
 ## Running locally
 
-    $ mvn jetty:run
+    $ mvn spring-boot:run
 
 ## Deploying
+
+Deploy.
 
     $ mvn appengine:deploy
