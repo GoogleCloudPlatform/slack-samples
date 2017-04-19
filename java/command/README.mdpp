@@ -41,36 +41,88 @@ modify to support Slack slash commands.
 
     cd java/command/1-start
 
-!INCLUDEURL "https://raw.githubusercontent.com/GoogleCloudPlatform/java-docs-samples/master/.github/templates/appengine-flexible-deploy.mdpp"
-
 ## Create a Slack app
 
 Create a new Slack app by going to the [app management
 page](https://api.slack.com/apps) and clicking the **Create new app** button.
 
 1.  Give the app a name, such as "Hello World".
-1.  Choose the Slack team where you want it installed.
+1.  Choose the Slack team for development and where you will eventually install it.
 
-## Adding a slash command custom integration
+### Create a slash command
 
-When someone types a [slash command in
-Slack](https://api.slack.com/slash-commands#how_do_commands_work), the Slack servers send an HTTP
-request to your application.
-
-1.  Select the [Slash commands](https://api.slack.com/slash-commands) feature
-    in the **Add features and functionality** section.
+1.  Click the **Slash commands** feature in the navigation on the left-hand side.
 1.  Click the **Create new command** button.
-1.  Set the command name to `/greet`.
-1.  Set the request URL to `https://YOUR_PROJECT.appspot.com/send-greeting`,
-    replacing `YOUR_PROJECT` with your Google Cloud Project ID.
-1.  Set the short description to "Sends a greeting".
-1.  Click the **Save** button at the bottom of the page to save your settings.
+1.  Enter a command name, such as `/greet`.
+1.  Enter `https://YOUR_PROJECT.appspot.com/hello` as your request URL, replacing `YOUR_PROJECT`
+    with your Google Cloud project ID.
+1.  Enter a short description, such as "Sends a greeting."
 
-Reinstall the app to ensure the slash command is installed.
+### Install the command to your team
 
-1.  Select the **Install app** item in the left navigation under **Settings**.
-1.  Click the **Install app** or **Reinstall app** button.
-    
+1.  Go to the **Basic information** page using the left-hand navigation.
+1.  Expand **Install your app to your team** and click the **Install app to team** button.
+
+## Deploying your app
+
+Your app requires some configuration. This sample uses the [RuntimeConfig
+API](https://cloud.google.com/deployment-manager/runtime-configurator/) to store configuration
+values, such as secret tokens.
+
+### Create a configuration
+
+Using the command-line [Google Cloud SDK](https://cloud.google.com/sdk/), create a new runtime
+configuration.
+
+    gcloud beta runtime-config configs create slack-samples-java
+
+### Copy the verification token
+
+To ensure that HTTP requests to your app originate from Slack, Slack provides a validation token.
+You check that the token field of an incoming request matches the expected value.
+
+1.  Select your app on the [app management page](https://api.slack.com/apps).
+1.  Go to the **Basic information** page.
+1.  Scroll to **App credentials** and copy the **Verification token** text.
+
+### Add verification token to the configuration
+
+Create a variable called `slack-token` in the runtime configuration. Use the Cloud SDK from the
+command-line to add the variable.
+
+    gcloud beta runtime-config configs variables set \
+        slack-token "YOUR-TOKEN-VALUE" \
+        --is-text --config-name slack-samples-java
+
+Replace `YOUR-TOKEN-VALUE` with the verification token value you copied from the Slack app
+management page.
+
+### [Optional] Running locally
+
+To run the application locally, use the Maven Spring Boot plugin.
+
+    mvn clean spring-boot:run
+
+View the app at http://localhost:8080.
+
+Since Slack requires a public URL to send webhooks, you may wish to [use a service like ngrok to
+test your Slack application locally](https://api.slack.com/tutorials/tunneling-with-ngrok).
+
+### Deploying to App Engine
+
+To deploy the app to App Engine, run
+
+    mvn clean appengine:deploy
+
+After the deploy finishes (can take up to 10 minutes), you can view your application at
+https://YOUR_PROJECT.appspot.com, where YOUR_PROJECT is your Google Cloud project ID. You can see
+the new version deployed on the App Engine section of the Google Cloud Console.
+
+For a more detailed walkthrough, see the getting started guide for Java in the App Engine flexible
+environment.
+
+## Trying the slash command
+
 When you run the slash command, Slack will send a request to your app and show the result.
 
 -   Type `/greet` in your Slack team.
