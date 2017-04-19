@@ -31,14 +31,27 @@ public class SlackApplication {
     return "Hello World";
   }
 
-  @RequestMapping("/hello")
-  public String hello(@ModelAttribute SlashCommand command) {
+  @RequestMapping(value = "/hello", produces = "application/json")
+  public Message hello(
+      @ModelAttribute("token") String token,
+      @ModelAttribute("team_id") String teamId,
+      @ModelAttribute("team_domain") String teamDomain,
+      @ModelAttribute("channel_id") String channelId,
+      @ModelAttribute("channel_name") String channelName,
+      @ModelAttribute("user_id") String userId,
+      @ModelAttribute("user_name") String userName,
+      @ModelAttribute("command") String command,
+      @ModelAttribute("text") String text,
+      @ModelAttribute("response_url") String responseUrl) {
     String desiredToken = System.getenv("SLACK_TOKEN");
-    // TODO: check for null and log the error that this is unconfigured
-    if (!desiredToken.equals(command.getToken())) {
+    if (!desiredToken.equals(token)) {
       throw new AccessDeniedException("forbidden");
     }
-    return "Hello " + command.getUserName();
+
+    Message message = new Message();
+    message.setText("Hello " + userName);
+    message.setResponseType(Message.ResponseType.IN_CHANNEL);
+    return message;
   }
 
   /**
