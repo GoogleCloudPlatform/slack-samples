@@ -34,5 +34,6 @@
 
   <modules>
     <module>command/1-start</module>
+    <module>events/1-start</module>
   </modules>
 </project>
