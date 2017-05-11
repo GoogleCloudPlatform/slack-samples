@@ -128,3 +128,15 @@ When you run the slash command, Slack will send a request to your app and show t
 -   Type `/greet` in your Slack team.
 
 You should see the text `Hello, world.` in response.
+
+## TODO: pub/sub
+
+    gcloud beta pubsub topics create slack-events
+    gcloud beta pubsub subscriptions create slack-events-hello --topic slack-events
+
+    openssl rand -base64 18
+    gcloud beta runtime-config configs variables set pubsub-token "$(openssl rand -base64 18)" --is-text --config-name slack-samples-java
+    gcloud beta runtime-config configs variables get-value pubsub-token --config-name slack-samples-java
+    gcloud beta pubsub subscriptions create slack-events-hello-push --topic slack-events \
+        --push-endpoint "https://swast-scratch.appspot.com/pubsub/push?token=$(gcloud beta runtime-config configs variables get-value pubsub-token --config-name slack-samples-java)" \
+        --ack-deadline 10
