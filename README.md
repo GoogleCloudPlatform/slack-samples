@@ -24,6 +24,7 @@ for Slack on Google Cloud Platform.
 ### Java
 
 - Slash Command on Google App Engine ([Tutorial & Code](java/command))
+- Bot Using the Events API on Google App Engine ([Tutorial & Code](java/events))
 
 ### Node.js
 
@@ -65,4 +66,3 @@ list](https://github.com/GoogleCloudPlatform/awesome-google-cloud).
 ## Disclaimer
 
 This is not an official Google product.
-

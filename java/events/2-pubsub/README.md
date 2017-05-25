@@ -1,4 +1,4 @@
-# Running a slash command for Slack on Google Cloud Platform - Step 1
+# Running a slash command for Slack on Google Cloud Platform - Step 2
 
 This is the solution directory for step one in the tutorial for running a [slash command for
 Slack](https://api.slack.com/slash-commands) on [Google Cloud Platform](https://cloud.google.com/).

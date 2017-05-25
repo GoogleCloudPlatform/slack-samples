@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,6 +46,39 @@ public class SlackApplication {
     return "Hello World";
   }
 
+  /**
+   * Handles a Slack slash command request.
+   *
+   * <p>See: https://github.com/GoogleCloudPlatform/slack-samples/tree/master/java/command
+   */
+  @RequestMapping(value = "/hello", produces = "application/json")
+  public Message hello(
+      @ModelAttribute("token") String token,
+      @ModelAttribute("team_id") String teamId,
+      @ModelAttribute("team_domain") String teamDomain,
+      @ModelAttribute("channel_id") String channelId,
+      @ModelAttribute("channel_name") String channelName,
+      @ModelAttribute("user_id") String userId,
+      @ModelAttribute("user_name") String userName,
+      @ModelAttribute("command") String command,
+      @ModelAttribute("text") String text,
+      @ModelAttribute("response_url") String responseUrl) {
+    String desiredToken = System.getenv("SLACK_TOKEN");
+    if (!desiredToken.equals(token)) {
+      throw new AccessDeniedException("forbidden");
+    }
+
+    Message message = new Message();
+    message.setText("Hello " + userName);
+    message.setResponseType(Message.ResponseType.IN_CHANNEL);
+    return message;
+  }
+
+  /**
+   * Handles a Slack event subscription.
+   *
+   * <p>See: https://github.com/GoogleCloudPlatform/slack-samples/tree/master/java/events
+   */
   @RequestMapping(value = "/event", produces = "application/json")
   public Object handleEvent(@RequestBody EventRequest request) throws IOException {
     // Verify that this request is from Slack.

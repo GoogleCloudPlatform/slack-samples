@@ -1,120 +1,69 @@
-# Running a slash command for Slack on Google Cloud Platform with Java
+# Running a Bot for Slack on Google Cloud Platform with Java
 
-This tutorial demonstrates how to build and deploy a [slash command for
-Slack](https://api.slack.com/slash-commands) on [Google Cloud Platform](https://cloud.google.com/).
+This tutorial demonstrates how to build and deploy a [bot for
+Slack](https://api.slack.com/bot-users) on [Google Cloud Platform](https://cloud.google.com/).
 
-Slash commands provide a way to call external web services from a [Slack](https://slack.com/)
-conversation. For example, the [Giphy
-app](https://get.slack.help/hc/en-us/articles/204714258-Add-Giphy-search-to-Slack) can be run by
-**/giphy** in a conversation.
-
-1\.  [Objectives](#objectives)  
-2\.  [Costs](#costs)  
-3\.  [Before you begin](#beforeyoubegin)  
-4\.  [Getting the sample code](#gettingthesamplecode)  
-5\.  [Create a Slack app](#createaslackapp)  
-5.1\.  [Create a slash command](#createaslashcommand)  
-5.2\.  [Install the command to your team](#installthecommandtoyourteam)  
-6\.  [Deploying your app](#deployingyourapp)  
-6.1\.  [Create a configuration](#createaconfiguration)  
-6.2\.  [Copy the verification token](#copytheverificationtoken)  
-6.3\.  [Add verification token to the configuration](#addverificationtokentotheconfiguration)  
-6.4\.  [[Optional] Running locally](#[optional]runninglocally)  
-6.5\.  [Deploying to App Engine](#deployingtoappengine)  
-7\.  [Trying the slash command](#tryingtheslashcommand)  
-
-<a name="objectives"></a>
-
-## 1\. Objectives
+## Objectives
 
 - Deploy a Java application to the [App Engine flexible environment][flexible].
-- Create a [slash command for Slack](https://api.slack.com/slash-commands).
+- Create a [bot for Slack](https://api.slack.com/bot-users).
 - Load tokens from the [Google Cloud Runtime Config
-  API](https://cloud.google.com/deployment-manager/runtime-configurator/) 
+  API](https://cloud.google.com/deployment-manager/runtime-configurator/)
 
 [flexible]: https://cloud.google.com/appengine/docs/flexible/java/
 
-<a name="costs"></a>
+## Before you begin
 
-## 2\. Costs
+Follow the [slash command tutorial](../command) to set up a Slack app and Google
+Cloud project.
+
+## Costs
 
 This tutorial uses billable components of Cloud Platform, including:
 
 - Google App Engine Flexible Environment
 
-Use the [Pricing Calculator][pricing] to generate a cost estimate based on your projected usage.
+Use the [Pricing Calculator][cloud-pricing] to generate a cost estimate based on
+your projected usage.
 
-[pricing]: https://cloud.google.com/products/calculator
+Slack is free for up to 10 apps and integrations. Check the [Slack pricing
+page][slack-pricing] for details.
 
-<a name="beforeyoubegin"></a>
+[cloud-pricing]: https://cloud.google.com/products/calculator
+[slack-pricing]: https://slack.com/pricing
 
-## 3\. Before you begin
-
-1.  Follow the [quickstart for Java in the App Engine flexible
-    environment](https://cloud.google.com/appengine/docs/flexible/java/quickstart) to 
-    set up your environment to deploy the sample applications App Engine.
-    1.  Download and install the [Google Cloud SDK](https://cloud.google.com/sdk/docs/).
-    1.  [Install and configure Apache Maven](http://maven.apache.org/index.html).
-    1.  [Create a new Google Cloud Platform project, or use an existing
-        one](https://console.cloud.google.com/project).
-    1.  [Enable billing for your
-        project](https://support.google.com/cloud/answer/6293499#enable-billing).
-    1. Initialize the Cloud SDK.
-
-           gcloud init
-
-1.  Create a [new Slack team](https://slack.com/), or use an team where you have
-    permissions to add custom integrations.
-
-<a name="gettingthesamplecode"></a>
-
-## 4\. Getting the sample code
+## Getting the sample code
 
 Get the latest sample code from GitHub using Git or download the repository as a ZIP file.
 ([Download](https://github.com/GoogleCloudPlatform/slack-samples/archive/master.zip))
 
     git clone https://github.com/GoogleCloudPlatform/slack-samples.git
 
+The `java/events/1-start` directory contains a simple Hello World bot.
 
-The `java/command/1-start` directory contains a simple Hello World application, which you will
-modify to support Slack slash commands.
+    cd java/events/1-start
 
-    cd java/command/1-start
+## Configuring the Slack app
 
-<a name="createaslackapp"></a>
+You will be adding a bot user to the app you created [slash command tutorial](../command).
 
-## 5\. Create a Slack app
+1.  Selecting your Slack app in the [app management page](https://api.slack.com/apps).
+1.  Click the **Bot users** feature in the navigation on the left-hand side.
+1.  Click the **Add a bot user** button.
+1.  Switch **Always show my bot as online** to **On**.
+1.  Add the bot user.
 
-Create a new Slack app by going to the [app management
-page](https://api.slack.com/apps) and clicking the **Create new app** button.
+### Install the command to your team
 
-1.  Give the app a name, such as "Hello World".
-1.  Choose the Slack team for development and where you will eventually install it.
+To add the bot user to your team, you need to reinstall the app.
 
-<a name="createaslashcommand"></a>
-
-### 5.1\. Create a slash command
-
-1.  Click the **Slash commands** feature in the navigation on the left-hand side.
-1.  Click the **Create new command** button.
-1.  Enter a command name, such as `/greet`.
-1.  Enter `https://YOUR_PROJECT.appspot.com/hello` as your request URL, replacing `YOUR_PROJECT`
-    with your Google Cloud project ID.
-1.  Enter a short description, such as "Sends a greeting."
-
-<a name="installthecommandtoyourteam"></a>
-
-### 5.2\. Install the command to your team
-
-1.  Go to the **Basic information** page using the left-hand navigation.
-1.  Expand **Install your app to your team** and click the **Install app to team** button.
-
-<a name="deployingyourapp"></a>
+1.  Go to the **OAuth and permissions** feature using the left-hand navigation.
+1.  Click the **Install app to team** button.
 
 ## 6\. Deploying your app
 
-Your app requires some configuration. This sample uses the [RuntimeConfig
-API](https://cloud.google.com/deployment-manager/runtime-configurator/) to store configuration
+This sample uses the [RuntimeConfig
+API configuration](https://cloud.google.com/deployment-manager/runtime-configurator/) to store configuration
 values, such as secret tokens.
 
 <a name="createaconfiguration"></a>
@@ -181,6 +130,17 @@ environment.
 
 <a name="tryingtheslashcommand"></a>
 
+## Enabling the events API
+
+1.  Select your app on the [app management page](https://api.slack.com/apps).
+1.  Click the **Event subscriptions** feature in the left-hand navigation.
+1.  Switch **Enable events** to **On**.
+1.  Enter `https://YOUR_PROJECT.appspot.com/hello` as your request URL, replacing `YOUR_PROJECT`
+    with your Google Cloud project ID.
+1.  Enter a short description, such as "Sends a greeting."
+
+<a name="installthecommandtoyourteam"></a>
+
 ## 7\. Trying the slash command
 
 When you run the slash command, Slack will send a request to your app and show the result.
@@ -188,3 +148,15 @@ When you run the slash command, Slack will send a request to your app and show t
 -   Type `/greet` in your Slack team.
 
 You should see the text `Hello, world.` in response.
+
+## TODO: pub/sub
+
+    gcloud beta pubsub topics create slack-events
+    gcloud beta pubsub subscriptions create slack-events-hello --topic slack-events
+
+    openssl rand -base64 18
+    gcloud beta runtime-config configs variables set pubsub-token "$(openssl rand -base64 18)" --is-text --config-name slack-samples-java
+    gcloud beta runtime-config configs variables get-value pubsub-token --config-name slack-samples-java
+    gcloud beta pubsub subscriptions create slack-events-hello-push --topic slack-events \
+        --push-endpoint "https://swast-scratch.appspot.com/pubsub/push?token=$(gcloud beta runtime-config configs variables get-value pubsub-token --config-name slack-samples-java)" \
+        --ack-deadline 10
