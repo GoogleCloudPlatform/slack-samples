@@ -19,18 +19,20 @@ steps:
     args: 
       - -c
       - |
+        set -ex
         go get -t -v -u ./...
-        && go test -v ./...
-        && go vet ./... 
-        && diff -u <(echo -n) <(gofmt -d -s .)
+        go test -v ./...
+        go vet ./...
+        diff -u <(echo -n) <(gofmt -d -s .)
   - name: maven:3-jdk-8
     waitFor: ['-']
     entrypoint: /bin/bash
     args: 
       - -c
       - |
+        set -ex
         cd java
-        && mvn clean verify
+        mvn clean verify
   - name: gcr.io/slack-samples/shellcheck
     waitFor: ['-']
     args: ['notify/install.sh', 'notify/login-notify.sh']
