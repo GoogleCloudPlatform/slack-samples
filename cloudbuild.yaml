@@ -33,4 +33,4 @@ steps:
         && mvn clean verify
   - name: gcr.io/slack-samples/shellcheck
     waitFor: ['-']
-    args: ['notify/*.sh']
+    args: ['notify/install.sh', 'notify/login-notify.sh']
